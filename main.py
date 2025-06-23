@@ -10,6 +10,7 @@ def main():
     dt = 0
     
     while True:
+        player_1.update(dt)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
               return
