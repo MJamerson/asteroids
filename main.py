@@ -33,6 +33,12 @@ def main():
               return
         group_updatable.update(dt)
         for asteroid in group_asteroids:
+            for shot in group_shots:
+                if asteroid.check_collision(shot):
+                    asteroid.split()
+                    shot.kill()
+
+        for asteroid in group_asteroids:
             if player_1.check_collision(asteroid):
                 print("Game over!")
                 sys.exit(1)
