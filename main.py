@@ -1,4 +1,5 @@
 import pygame
+import sys
 from player import *
 from asteroid import *
 from constants import *
@@ -22,10 +23,15 @@ def main():
     asteroid_field = AsteroidField()
     
     while True:
-        group_updatable.update(dt)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
               return
+        group_updatable.update(dt)
+        for asteroid in group_asteroids:
+            if player_1.check_collision(asteroid):
+                print("Game over!")
+                sys.exit(1)
+
         screen.fill("black")
         for thing in group_drawable:
             thing.draw(screen)
